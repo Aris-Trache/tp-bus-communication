@@ -10,6 +10,10 @@ void GPIO_Init(void){
 	/* GPIO Init */
 	GPIOA->MODER |= OUTPUT_MODE <<10;		// PA5 Output LED
 	GPIOC->MODER |= INPUT_MODE	<< 26;		// PC13 Input Push-Button
+	/* PA10 = DATA du DS18B20 (bus One-Wire) */
+	GPIOA->MODER  |= OUTPUT_MODE << 20;	// bits 20-21 : sortie
+	GPIOA->OTYPER |= 1 << 10;		// bit 10 : open drain
+	GPIOA->PUPDR  |= 1 << 20;		// bits 20-21 = 01 : pull-up
 }
 
 
